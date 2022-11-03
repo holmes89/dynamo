@@ -3,7 +3,7 @@
 //
 // This file may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-// https://github.com/fogfish/dynamo
+// https://github.com/holmes89/dynamo
 //
 
 package ddb_test
@@ -15,10 +15,10 @@ import (
 	"github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
 	"github.com/fogfish/curie"
-	"github.com/fogfish/dynamo/v2"
-	"github.com/fogfish/dynamo/v2/internal/ddb/ddbtest"
-	"github.com/fogfish/dynamo/v2/internal/dynamotest"
 	"github.com/fogfish/it"
+	"github.com/holmes89/dynamo"
+	"github.com/holmes89/dynamo/internal/ddb/ddbtest"
+	"github.com/holmes89/dynamo/internal/dynamotest"
 )
 
 type person struct {

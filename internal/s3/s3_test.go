@@ -3,7 +3,7 @@
 //
 // This file may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-// https://github.com/fogfish/dynamo
+// https://github.com/holmes89/dynamo
 //
 
 package s3_test
@@ -13,9 +13,9 @@ import (
 	"testing"
 
 	"github.com/fogfish/curie"
-	"github.com/fogfish/dynamo/v2/internal/dynamotest"
-	"github.com/fogfish/dynamo/v2/internal/s3/s3test"
 	"github.com/fogfish/it"
+	"github.com/holmes89/dynamo/internal/dynamotest"
+	"github.com/holmes89/dynamo/internal/s3/s3test"
 )
 
 func codec(p dynamotest.Person) (dynamotest.Person, error) {
@@ -37,7 +37,6 @@ func TestS3(t *testing.T) {
 //
 //-----------------------------------------------------------------------------
 
-//
 // dynamodbattribute.MarshalMap / dynamodbattribute.UnmarshalMap corrupts struct(s)
 // it do not resets the slice to zero when decoding generic structure back to the interface
 // as the result old values might leakout while doing s3 update

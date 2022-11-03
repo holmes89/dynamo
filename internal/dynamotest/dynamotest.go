@@ -3,7 +3,7 @@
 //
 // This file may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-// https://github.com/fogfish/dynamo
+// https://github.com/holmes89/dynamo
 //
 
 //
@@ -19,12 +19,11 @@ import (
 	"testing"
 
 	"github.com/fogfish/curie"
-	"github.com/fogfish/dynamo/v2"
 	"github.com/fogfish/it"
+	"github.com/holmes89/dynamo"
 )
 
 /*
-
 Person is a type used for testing
 */
 type Person struct {
@@ -38,7 +37,6 @@ type Person struct {
 func (p Person) HashKey() curie.IRI { return p.Prefix }
 func (p Person) SortKey() curie.IRI { return p.Suffix }
 
-//
 // Use type aliases and methods to implement FMap
 type Persons []Person
 
@@ -47,8 +45,6 @@ func (seq *Persons) Join(val Person) error {
 	return nil
 }
 
-//
-//
 func fixtureKey() Person {
 	return Person{
 		Prefix: curie.New("dead:beef"),
@@ -56,16 +52,12 @@ func fixtureKey() Person {
 	}
 }
 
-//
-//
 func fixtureKeyHashOnly() Person {
 	return Person{
 		Prefix: curie.New("dead:beef"),
 	}
 }
 
-//
-//
 func fixtureVal() Person {
 	return Person{
 		Prefix:  curie.New("dead:beef"),
@@ -76,8 +68,6 @@ func fixtureVal() Person {
 	}
 }
 
-//
-//
 func fixturePatch() Person {
 	return Person{
 		Prefix: curie.New("dead:beef"),
@@ -87,13 +77,10 @@ func fixturePatch() Person {
 }
 
 /*
-
 Encoder of test type to storage internal format
 */
 type Encoder[A any] func(Person) (A, error)
 
-//
-//
 func TestGet[S any](
 	t *testing.T,
 	encoder Encoder[S],
@@ -141,8 +128,6 @@ func TestGet[S any](
 	})
 }
 
-//
-//
 func TestPut[S any](
 	t *testing.T,
 	encoder Encoder[S],
@@ -182,8 +167,6 @@ func TestPut[S any](
 	// })
 }
 
-//
-//
 func TestRemove[S any](
 	t *testing.T,
 	encoder Encoder[S],
@@ -204,8 +187,6 @@ func TestRemove[S any](
 	})
 }
 
-//
-//
 func TestUpdate[S any](
 	t *testing.T,
 	encoder Encoder[S],
@@ -233,8 +214,6 @@ func TestUpdate[S any](
 	})
 }
 
-//
-//
 func TestMatch[S any](
 	t *testing.T,
 	encoder Encoder[S],

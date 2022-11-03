@@ -3,7 +3,7 @@
 //
 // This file may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-// https://github.com/fogfish/dynamo
+// https://github.com/holmes89/dynamo
 //
 
 package ddb
@@ -13,10 +13,9 @@ import (
 	"fmt"
 	"runtime"
 
-	"github.com/fogfish/dynamo/v2"
+	"github.com/holmes89/dynamo"
 )
 
-//
 func errServiceIO(err error) error {
 	var name string
 
@@ -27,7 +26,6 @@ func errServiceIO(err error) error {
 	return fmt.Errorf("[%s] service i/o failed: %w", name, err)
 }
 
-//
 func errInvalidKey(err error) error {
 	var name string
 
@@ -38,7 +36,6 @@ func errInvalidKey(err error) error {
 	return fmt.Errorf("[%s] invalid key: %w", name, err)
 }
 
-//
 func errInvalidEntity(err error) error {
 	var name string
 
@@ -49,7 +46,6 @@ func errInvalidEntity(err error) error {
 	return fmt.Errorf("[%s] invalid entity: %w", name, err)
 }
 
-//
 func errProcessEntity(err error, thing dynamo.Thing) error {
 	var name string
 
@@ -87,7 +83,6 @@ func (e *notFound) NotFound() string {
 	return e.HashKey().Safe() + " " + e.SortKey().Safe()
 }
 
-//
 func errPreConditionFailed(err error, thing dynamo.Thing, conflict bool, gone bool) error {
 	var name string
 
@@ -118,7 +113,6 @@ func (e *preConditionFailed) Conflict() bool { return e.conflict }
 
 func (e *preConditionFailed) Gone() bool { return e.gone }
 
-//
 func errEndOfStream() error {
 	var name string
 
@@ -129,7 +123,6 @@ func errEndOfStream() error {
 	return fmt.Errorf("[%s] end of stream", name)
 }
 
-//
 func recoverConditionalCheckFailedException(err error) bool {
 	var e interface{ ErrorCode() string }
 

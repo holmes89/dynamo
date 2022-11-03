@@ -3,7 +3,7 @@
 //
 // This file may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-// https://github.com/fogfish/dynamo
+// https://github.com/holmes89/dynamo
 //
 
 package constraint_test
@@ -11,8 +11,8 @@ package constraint_test
 import (
 	"testing"
 
-	"github.com/fogfish/dynamo/v2/internal/constraint"
 	"github.com/fogfish/it"
+	"github.com/holmes89/dynamo/internal/constraint"
 )
 
 func TestDyadic(t *testing.T) {

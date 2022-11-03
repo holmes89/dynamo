@@ -3,7 +3,7 @@
 //
 // This file may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-// https://github.com/fogfish/dynamo
+// https://github.com/holmes89/dynamo
 //
 
 //
@@ -17,7 +17,6 @@ import (
 )
 
 /*
-
 Unary operation, applies over the key
 */
 type Unary[T any] struct {
@@ -28,7 +27,6 @@ type Unary[T any] struct {
 func (Unary[T]) TypeOf(T) {}
 
 /*
-
 Dyadic operation, applied over the key * value
 */
 type Dyadic[T any] struct {
@@ -44,61 +42,60 @@ func (Dyadic[T]) TypeOf(T) {}
 //
 
 /*
-
 Eq is equal constrain
-  name.Eq(x) ⟼ Field = :value
+
+	name.Eq(x) ⟼ Field = :value
 */
 func Eq[T, A any](key string, val A) *Dyadic[T] {
 	return &Dyadic[T]{Op: "=", Key: key, Val: val}
 }
 
 /*
-
 Ne is non equal constrain
-  name.Ne(x) ⟼ Field <> :value
+
+	name.Ne(x) ⟼ Field <> :value
 */
 func Ne[T, A any](key string, val A) *Dyadic[T] {
 	return &Dyadic[T]{Op: "<>", Key: key, Val: val}
 }
 
 /*
-
 Lt is less than constain
-  name.Lt(x) ⟼ Field < :value
+
+	name.Lt(x) ⟼ Field < :value
 */
 func Lt[T, A any](key string, val A) *Dyadic[T] {
 	return &Dyadic[T]{Op: "<", Key: key, Val: val}
 }
 
 /*
-
 Le is less or equal constain
-  name.Le(x) ⟼ Field <= :value
+
+	name.Le(x) ⟼ Field <= :value
 */
 func Le[T, A any](key string, val A) *Dyadic[T] {
 	return &Dyadic[T]{Op: "<=", Key: key, Val: val}
 }
 
 /*
-
 Gt is greater than constrain
-  name.Le(x) ⟼ Field > :value
+
+	name.Le(x) ⟼ Field > :value
 */
 func Gt[T, A any](key string, val A) *Dyadic[T] {
 	return &Dyadic[T]{Op: ">", Key: key, Val: val}
 }
 
 /*
-
 Ge is greater or equal constrain
-  name.Le(x) ⟼ Field >= :value
+
+	name.Le(x) ⟼ Field >= :value
 */
 func Ge[T, A any](key string, val A) *Dyadic[T] {
 	return &Dyadic[T]{Op: ">=", Key: key, Val: val}
 }
 
 /*
-
 Is matches either Eq or NotExists if value is not defined
 */
 func Is[T any](key string, val string) interface{ TypeOf(T) } {
@@ -110,17 +107,17 @@ func Is[T any](key string, val string) interface{ TypeOf(T) } {
 }
 
 /*
-
 Exists attribute constrain
-  name.Exists(x) ⟼ attribute_exists(name)
+
+	name.Exists(x) ⟼ attribute_exists(name)
 */
 func Exists[T any](key string) *Unary[T] {
 	return &Unary[T]{Op: "attribute_exists", Key: key}
 }
 
 /*
-
 NotExists attribute constrain
+
 	name.NotExists(x) ⟼ attribute_not_exists(name)
 */
 func NotExists[T any](key string) *Unary[T] {

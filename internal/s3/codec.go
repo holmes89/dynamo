@@ -3,18 +3,17 @@
 //
 // This file may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-// https://github.com/fogfish/dynamo
+// https://github.com/holmes89/dynamo
 //
 
 package s3
 
 import (
 	"github.com/fogfish/curie"
-	"github.com/fogfish/dynamo/v2"
+	"github.com/holmes89/dynamo"
 )
 
 /*
-
 Codec is utility to encode/decode objects to s3 representation
 */
 type Codec[T dynamo.Thing] struct {
@@ -29,7 +28,6 @@ func NewCodec[T dynamo.Thing](prefixes curie.Prefixes) *Codec[T] {
 	return &Codec[T]{prefixes: prefixes}
 }
 
-//
 func (codec Codec[T]) EncodeKey(key T) string {
 	hkey := curie.URI(codec.prefixes, key.HashKey())
 	skey := curie.URI(codec.prefixes, key.SortKey())

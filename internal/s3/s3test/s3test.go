@@ -3,7 +3,7 @@
 //
 // This file may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-// https://github.com/fogfish/dynamo
+// https://github.com/holmes89/dynamo
 //
 
 //
@@ -25,12 +25,10 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/s3/types"
 
 	"github.com/fogfish/curie"
-	"github.com/fogfish/dynamo/v2"
-	s3api "github.com/fogfish/dynamo/v2/service/s3"
+	"github.com/holmes89/dynamo"
+	s3api "github.com/holmes89/dynamo/service/s3"
 )
 
-//
-//
 func mock[T dynamo.Thing](mock dynamo.S3) dynamo.KeyVal[T] {
 	return s3api.Must(
 		s3api.New[T]("s3:///test", mock, curie.Namespaces{}),
@@ -49,7 +47,6 @@ func encodeKey(key dynamo.Thing) string {
 }
 
 /*
-
 GetObject mock
 */
 func GetObject[T dynamo.Thing](
@@ -84,7 +81,6 @@ func (mock *s3GetObject[T]) GetObject(ctx context.Context, input *s3.GetObjectIn
 }
 
 /*
-
 PutObject mock
 */
 func PutObject[T dynamo.Thing](
@@ -116,7 +112,6 @@ func (mock *s3PutObject[T]) PutObject(ctx context.Context, input *s3.PutObjectIn
 }
 
 /*
-
 DeleteObject mock
 */
 func DeleteObject[T dynamo.Thing](
@@ -139,7 +134,6 @@ func (mock *s3DeleteObject[T]) DeleteObject(ctx context.Context, input *s3.Delet
 }
 
 /*
-
 GetPutObject mock (used by the Update)
 */
 func GetPutObject[T dynamo.Thing](
@@ -168,7 +162,6 @@ func (mock *s3GetPutObject[T]) PutObject(ctx context.Context, input *s3.PutObjec
 }
 
 /*
-
 GetListObjects mock
 */
 func GetListObjects[T dynamo.Thing](

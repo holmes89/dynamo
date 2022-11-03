@@ -3,7 +3,7 @@
 //
 // This file may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-// https://github.com/fogfish/dynamo
+// https://github.com/holmes89/dynamo
 //
 
 package main
@@ -15,11 +15,10 @@ import (
 	"os"
 
 	"github.com/fogfish/curie"
-	"github.com/fogfish/dynamo/v2"
-	"github.com/fogfish/dynamo/v2/service/ddb"
+	"github.com/holmes89/dynamo"
+	"github.com/holmes89/dynamo/service/ddb"
 )
 
-//
 // Person type demonstrates composition of core type with db one
 type Person struct {
 	Org     curie.IRI `dynamodbav:"prefix,omitempty"`
@@ -35,8 +34,6 @@ func (p Person) SortKey() curie.IRI { return p.ID }
 // KeyVal is type synonym
 type KeyVal dynamo.KeyVal[*Person]
 
-//
-//
 func main() {
 	db := ddb.Must(
 		ddb.New[*Person](os.Args[1], nil,

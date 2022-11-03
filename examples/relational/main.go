@@ -3,7 +3,7 @@
 //
 // This file may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-// https://github.com/fogfish/dynamo
+// https://github.com/holmes89/dynamo
 //
 
 package main
@@ -14,8 +14,8 @@ import (
 	"log"
 
 	"github.com/fogfish/curie"
-	"github.com/fogfish/dynamo/v2"
-	"github.com/fogfish/dynamo/v2/service/ddb"
+	"github.com/holmes89/dynamo"
+	"github.com/holmes89/dynamo/service/ddb"
 )
 
 func main() {
@@ -67,7 +67,6 @@ func main() {
 }
 
 /*
-
 As a reader I want to fetch the article ...
 */
 func fetchArticle(db dynamo.KeyVal[Article]) error {
@@ -87,7 +86,6 @@ func fetchArticle(db dynamo.KeyVal[Article]) error {
 }
 
 /*
-
 As a reader I want to list all articles written by the author ...
 */
 func lookupArticlesByAuthor(db dynamo.KeyVal[Article], author string) error {
@@ -107,7 +105,6 @@ func lookupArticlesByAuthor(db dynamo.KeyVal[Article], author string) error {
 }
 
 /*
-
 As a reader I want to look up articles titles for given keywords ...
 */
 func lookupArticlesByKeyword(db dynamo.KeyVal[Keyword], keyword string) error {
@@ -128,7 +125,6 @@ func lookupArticlesByKeyword(db dynamo.KeyVal[Keyword], keyword string) error {
 }
 
 /*
-
 As a reader I want to look up articles titles written by the author for a given keyword
 */
 func lookupArticlesByKeywordAuthor(db dynamo.KeyVal[Keyword], keyword, author string) error {
@@ -150,7 +146,6 @@ func lookupArticlesByKeywordAuthor(db dynamo.KeyVal[Keyword], keyword, author st
 }
 
 /*
-
 As a reader I want to look up all keywords of the article ...
 */
 func fetchArticleKeywords(db dynamo.KeyVal[Keyword]) error {
@@ -172,7 +167,6 @@ func fetchArticleKeywords(db dynamo.KeyVal[Keyword]) error {
 }
 
 /*
-
 As a reader I want to look up all articles for a given category in chronological order ...
 */
 func lookupArticlesByCategory(db dynamo.KeyVal[Category], category string) error {
@@ -193,7 +187,6 @@ func lookupArticlesByCategory(db dynamo.KeyVal[Category], category string) error
 }
 
 /*
-
 As a reader I want to list all articles written by the author in chronological order ...
 */
 func lookupByAuthorOrderedByTime(db dynamo.KeyVal[Article], author string) error {
@@ -213,7 +206,6 @@ func lookupByAuthorOrderedByTime(db dynamo.KeyVal[Article], author string) error
 	return stdio(seq)
 }
 
-//
 func articlesOfJohnVonNeumann(
 	db dynamo.KeyVal[Author],
 	dba dynamo.KeyVal[Article],
@@ -244,7 +236,6 @@ func articlesOfJohnVonNeumann(
 	return nil
 }
 
-//
 func articlesOfLeonardKleinrock(
 	db dynamo.KeyVal[Author],
 	dba dynamo.KeyVal[Article],
@@ -276,7 +267,6 @@ func articlesOfLeonardKleinrock(
 }
 
 /*
-
 As an author I want to register a profile ...
 */
 func registerAuthor(db dynamo.KeyVal[Author], id, name string) error {
@@ -291,7 +281,6 @@ func registerAuthor(db dynamo.KeyVal[Author], id, name string) error {
 }
 
 /*
-
 As an author I want to publish an article to the system ...
 */
 func publishArticle(

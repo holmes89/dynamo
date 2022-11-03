@@ -3,7 +3,7 @@
 //
 // This file may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-// https://github.com/fogfish/dynamo
+// https://github.com/holmes89/dynamo
 //
 
 //
@@ -16,12 +16,11 @@ import (
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
-	"github.com/fogfish/dynamo/v2"
-	constrain "github.com/fogfish/dynamo/v2/internal/constraint"
+	"github.com/holmes89/dynamo"
+	constrain "github.com/holmes89/dynamo/internal/constraint"
 )
 
 /*
-
 Internal implementation of conditional expressions for dynamo db
 */
 func maybeConditionExpression[T dynamo.Thing](
@@ -62,7 +61,6 @@ func maybeConditionExpression[T dynamo.Thing](
 }
 
 /*
-
 Internal implementation of conditional expressions for dynamo db in the case of
 update.
 */
@@ -91,7 +89,6 @@ func maybeUpdateConditionExpression[T dynamo.Thing](
 }
 
 /*
-
 dyadic translate expression to dynamo format
 */
 func dyadic[T dynamo.Thing](
@@ -117,7 +114,6 @@ func dyadic[T dynamo.Thing](
 }
 
 /*
-
 unary translate expression to dynamo format
 */
 func unary[T dynamo.Thing](

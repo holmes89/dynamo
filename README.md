@@ -2,13 +2,13 @@
 
 The library implements a simple key-value abstraction to store algebraic, linked-data data types at AWS storage services: AWS DynamoDB and AWS S3.
 
-[![Version](https://img.shields.io/github/v/tag/fogfish/dynamo?label=version)](https://github.com/fogfish/dynamo/releases)
-[![Documentation](https://pkg.go.dev/badge/github.com/fogfish/dynamo)](https://pkg.go.dev/github.com/fogfish/dynamo)
-[![Build Status](https://github.com/fogfish/dynamo/workflows/build/badge.svg)](https://github.com/fogfish/dynamo/actions/)
-[![Git Hub](https://img.shields.io/github/last-commit/fogfish/dynamo.svg)](https://github.com/fogfish/dynamo)
-[![Coverage Status](https://coveralls.io/repos/github/fogfish/dynamo/badge.svg?branch=main)](https://coveralls.io/github/fogfish/dynamo?branch=main)
-[![Go Report Card](https://goreportcard.com/badge/github.com/fogfish/dynamo)](https://goreportcard.com/report/github.com/fogfish/dynamo)
-[![Maintainability](https://api.codeclimate.com/v1/badges/8a8746f9cbaba81bb44b/maintainability)](https://codeclimate.com/github/fogfish/dynamo/maintainability)
+[![Version](https://img.shields.io/github/v/tag/holmes89/dynamo?label=version)](https://github.com/holmes89/dynamo/releases)
+[![Documentation](https://pkg.go.dev/badge/github.com/holmes89/dynamo)](https://pkg.go.dev/github.com/holmes89/dynamo)
+[![Build Status](https://github.com/holmes89/dynamo/workflows/build/badge.svg)](https://github.com/holmes89/dynamo/actions/)
+[![Git Hub](https://img.shields.io/github/last-commit/holmes89/dynamo.svg)](https://github.com/holmes89/dynamo)
+[![Coverage Status](https://coveralls.io/repos/github/holmes89/dynamo/badge.svg?branch=main)](https://coveralls.io/github/holmes89/dynamo?branch=main)
+[![Go Report Card](https://goreportcard.com/badge/github.com/holmes89/dynamo)](https://goreportcard.com/report/github.com/holmes89/dynamo)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8a8746f9cbaba81bb44b/maintainability)](https://codeclimate.com/github/holmes89/dynamo/maintainability)
 
 
 ## Inspiration
@@ -99,7 +99,7 @@ The following code snippet shows a typical I/O patterns
 
 ```go
 import (
-  "github.com/fogfish/dynamo/v2/service/ddb"
+  "github.com/holmes89/dynamo/service/ddb"
 )
 
 //
@@ -225,7 +225,7 @@ See [advanced example](examples/relational/) for details on managing linked-data
 
 ### Sequences and Pagination
 
-Hierarchical structures is the way to organize collections, lists, sets, etc. The `Match` returns a lazy [Sequence](https://pkg.go.dev/github.com/fogfish/dynamo?readme=expanded#Seq) that represents your entire collection. Sometimes, your need to split the collection into sequence of pages.
+Hierarchical structures is the way to organize collections, lists, sets, etc. The `Match` returns a lazy [Sequence](https://pkg.go.dev/github.com/holmes89/dynamo?readme=expanded#Seq) that represents your entire collection. Sometimes, your need to split the collection into sequence of pages.
 
 ```go
 // 1. Set the limit on the stream 
@@ -316,7 +316,7 @@ type Person struct {
 /*** aws/ddb/ddb.go ***/
 
 import (
-  "github.com/fogfish/dynamo/service/ddb"
+  "github.com/holmes89/dynamo/service/ddb"
 )
 
 // 3. declare codecs for complex core domain type 
@@ -396,7 +396,7 @@ default:
 }
 ```
 
-See the [go doc](https://pkg.go.dev/github.com/fogfish/dynamo?tab=doc) for all supported constraints.
+See the [go doc](https://pkg.go.dev/github.com/holmes89/dynamo?tab=doc) for all supported constraints.
 
 
 ### Configure DynamoDB
@@ -431,8 +431,8 @@ The library advances its simple I/O interface to AWS S3 bucket, allowing to pers
 
 ```go
 import (
-  "github.com/fogfish/dynamo/v2/service/ddb"
-  "github.com/fogfish/dynamo/v2/service/s3"
+  "github.com/holmes89/dynamo/service/ddb"
+  "github.com/holmes89/dynamo/service/s3"
 )
 
 
@@ -470,7 +470,7 @@ The build and testing process requires [Go](https://golang.org) version 1.13 or 
 **build** and **test** library.
 
 ```bash
-git clone https://github.com/fogfish/dynamo
+git clone https://github.com/holmes89/dynamo
 cd dynamo
 go test
 ```
@@ -481,8 +481,8 @@ The commit message helps us to write a good release note, speed-up review proces
 
 ### bugs
 
-If you experience any issues with the library, please let us know via [GitHub issues](https://github.com/fogfish/dynamo/issue). We appreciate detailed and accurate reports that help us to identity and replicate the issue. 
+If you experience any issues with the library, please let us know via [GitHub issues](https://github.com/holmes89/dynamo/issue). We appreciate detailed and accurate reports that help us to identity and replicate the issue. 
 
 ## License
 
-[![See LICENSE](https://img.shields.io/github/license/fogfish/dynamo.svg?style=for-the-badge)](LICENSE)
+[![See LICENSE](https://img.shields.io/github/license/holmes89/dynamo.svg?style=for-the-badge)](LICENSE)

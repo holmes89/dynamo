@@ -3,7 +3,7 @@
 //
 // This file may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-// https://github.com/fogfish/dynamo
+// https://github.com/holmes89/dynamo
 //
 
 //
@@ -21,12 +21,11 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
 
 	"github.com/fogfish/curie"
-	"github.com/fogfish/dynamo/v2"
-	ddbapi "github.com/fogfish/dynamo/v2/service/ddb"
+	"github.com/holmes89/dynamo"
+	ddbapi "github.com/holmes89/dynamo/service/ddb"
 )
 
 /*
-
 mock factory
 */
 func mock[T dynamo.Thing](mock dynamo.DynamoDB) dynamo.KeyVal[T] {
@@ -36,7 +35,6 @@ func mock[T dynamo.Thing](mock dynamo.DynamoDB) dynamo.KeyVal[T] {
 }
 
 /*
-
 GetItem mocks
 */
 func GetItem[T dynamo.Thing](
@@ -65,7 +63,6 @@ func (mock *ddbGetItem) GetItem(ctx context.Context, input *dynamodb.GetItemInpu
 }
 
 /*
-
 PutItem mock
 */
 func PutItem[T dynamo.Thing](
@@ -89,7 +86,6 @@ func (mock *ddbPutItem) PutItem(ctx context.Context, input *dynamodb.PutItemInpu
 }
 
 /*
-
 DeleteItem mock
 */
 func DeleteItem[T dynamo.Thing](
@@ -112,7 +108,6 @@ func (mock *ddbDeleteItem) DeleteItem(ctx context.Context, input *dynamodb.Delet
 }
 
 /*
-
 UpdateItem mock
 */
 func UpdateItem[T dynamo.Thing](
@@ -151,7 +146,6 @@ func (mock *ddbUpdateItem) UpdateItem(ctx context.Context, input *dynamodb.Updat
 }
 
 /*
-
 Query mock
 */
 func Query[T dynamo.Thing](
@@ -209,8 +203,6 @@ func Constrains[T dynamo.Thing](
 	})
 }
 
-//
-//
 type ddbConstrains struct {
 	dynamo.DynamoDB
 	returnVal map[string]types.AttributeValue

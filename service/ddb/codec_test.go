@@ -3,7 +3,7 @@
 //
 // This file may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-// https://github.com/fogfish/dynamo
+// https://github.com/holmes89/dynamo
 //
 
 package ddb_test
@@ -18,11 +18,10 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
 
 	"github.com/fogfish/curie"
-	dynamo "github.com/fogfish/dynamo/v2/service/ddb"
 	"github.com/fogfish/it"
+	dynamo "github.com/holmes89/dynamo/service/ddb"
 )
 
-//
 // Testing custom codecs
 type codecType struct{ Val string }
 
@@ -114,9 +113,6 @@ func TestCodecEncode(t *testing.T) {
 		If(tv.Value["city"].(*types.AttributeValueMemberS).Value).Equal("myCity")
 }
 
-//
-//
-//
 type codecMyType struct {
 	HKey curie.IRI  `dynamodbav:"hkey,omitempty"`
 	SKey curie.IRI  `dynamodbav:"skey,omitempty"`
@@ -182,9 +178,6 @@ func TestCodecEncodeDecodeKeyOnlyHash(t *testing.T) {
 		IfTrue(curie.Eq(core.SKey, some.SKey))
 }
 
-//
-//
-//
 type codecTypeBad codecType
 
 func (x codecTypeBad) MarshalDynamoDBAttributeValue() (types.AttributeValue, error) {

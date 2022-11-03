@@ -3,7 +3,7 @@
 //
 // This file may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-// https://github.com/fogfish/dynamo
+// https://github.com/holmes89/dynamo
 //
 
 //
@@ -15,12 +15,11 @@ package dynamo
 import (
 	"strings"
 
-	"github.com/fogfish/dynamo/v2/internal/constraint"
 	"github.com/fogfish/golem/pure/hseq"
+	"github.com/holmes89/dynamo/internal/constraint"
 )
 
 /*
-
 Constraint is a function that applies conditional expression to storage request.
 Each storage implements own constrains protocols. The module here defines a few
 constrain protocol. The structure of the constrain is abstracted away from the client.
@@ -30,15 +29,14 @@ See internal/constrain package to see details about its implementation
 type Constraint[T Thing] interface{ TypeOf(T) }
 
 /*
-
 TypeOf declares type descriptor to express Storage I/O Constrains.
 
 Let's consider a following example:
 
-  type Person struct {
-    curie.ID
-    Name    string `dynamodbav:"anothername,omitempty"`
-  }
+	type Person struct {
+	  curie.ID
+	  Name    string `dynamodbav:"anothername,omitempty"`
+	}
 
 How to define a condition expression on the field Name? Golang struct defines
 and refers the field by `Name` but DynamoDB stores it under the attribute
@@ -52,11 +50,10 @@ The types TypeOf and SchemaN are helpers to declare builders for conditional
 expressions. Just declare a global variables next to type definition and
 use them across the application.
 
-  var name = dynamo.Schema1[Person, string]("Name")
+	  var name = dynamo.Schema1[Person, string]("Name")
 
-	name.Eq("Joe Doe")
-  name.NotExists()
-
+		name.Eq("Joe Doe")
+	  name.NotExists()
 */
 type TypeOf[T Thing, A any] interface {
 	Eq(A) Constraint[T]
@@ -71,7 +68,6 @@ type TypeOf[T Thing, A any] interface {
 }
 
 /*
-
 Schema1 builds Constrain builder for product type of arity 1
 */
 func Schema1[T Thing, A any](a string) TypeOf[T, A] {
@@ -82,7 +78,6 @@ func Schema1[T Thing, A any](a string) TypeOf[T, A] {
 }
 
 /*
-
 Schema2 builds Constrain builder for product type of arity 2
 */
 func Schema2[T Thing, A, B any](a, b string) (
@@ -97,7 +92,6 @@ func Schema2[T Thing, A, B any](a, b string) (
 }
 
 /*
-
 Schema3 builds Constrain builder for product type of arity 3
 */
 func Schema3[T Thing, A, B, C any](a, b, c string) (
@@ -114,7 +108,6 @@ func Schema3[T Thing, A, B, C any](a, b, c string) (
 }
 
 /*
-
 Schema4 builds Constrain builder for product type of arity 4
 */
 func Schema4[T Thing, A, B, C, D any](a, b, c, d string) (
@@ -133,7 +126,6 @@ func Schema4[T Thing, A, B, C, D any](a, b, c, d string) (
 }
 
 /*
-
 Schema5 builds Constrain builder for product type of arity 5
 */
 func Schema5[T Thing, A, B, C, D, E any](a, b, c, d, e string) (
@@ -154,7 +146,6 @@ func Schema5[T Thing, A, B, C, D, E any](a, b, c, d, e string) (
 }
 
 /*
-
 Schema6 builds Constrain builder for product type of arity 6
 */
 func Schema6[T Thing, A, B, C, D, E, F any](a, b, c, d, e, f string) (
@@ -177,7 +168,6 @@ func Schema6[T Thing, A, B, C, D, E, F any](a, b, c, d, e, f string) (
 }
 
 /*
-
 Schema7 builds Constrain builder for product type of arity 7
 */
 func Schema7[T Thing, A, B, C, D, E, F, G any](a, b, c, d, e, f, g string) (
@@ -202,7 +192,6 @@ func Schema7[T Thing, A, B, C, D, E, F, G any](a, b, c, d, e, f, g string) (
 }
 
 /*
-
 Schema8 builds Constrain builder for product type of arity 8
 */
 func Schema8[T Thing, A, B, C, D, E, F, G, H any](a, b, c, d, e, f, g, h string) (
@@ -229,7 +218,6 @@ func Schema8[T Thing, A, B, C, D, E, F, G, H any](a, b, c, d, e, f, g, h string)
 }
 
 /*
-
 Schema9 builds Constrain builder for product type of arity 9
 */
 func Schema9[T Thing, A, B, C, D, E, F, G, H, I any](a, b, c, d, e, f, g, h, i string) (
@@ -258,7 +246,6 @@ func Schema9[T Thing, A, B, C, D, E, F, G, H, I any](a, b, c, d, e, f, g, h, i s
 }
 
 /*
-
 Schema10 builds Constrain builder for product type of arity 10
 */
 func Schema10[T Thing, A, B, C, D, E, F, G, H, I, J any](a, b, c, d, e, f, g, h, i, j string) (
@@ -312,67 +299,65 @@ func mkTypeOf[T Thing, A any](t hseq.Type[T]) TypeOf[T, A] {
 }
 
 /*
-
 Internal implementation of Constrain effects for storage
 */
 type effect[T Thing, A any] struct{ Key string }
 
 /*
-
 Eq is equal constrain
-  name.Eq(x) ⟼ Field = :value
+
+	name.Eq(x) ⟼ Field = :value
 */
 func (eff effect[T, A]) Eq(val A) Constraint[T] {
 	return constraint.Eq[T](eff.Key, val)
 }
 
 /*
-
 Ne is non equal constrain
-  name.Ne(x) ⟼ Field <> :value
+
+	name.Ne(x) ⟼ Field <> :value
 */
 func (eff effect[T, A]) Ne(val A) Constraint[T] {
 	return constraint.Ne[T](eff.Key, val)
 }
 
 /*
-
 Lt is less than constain
-  name.Lt(x) ⟼ Field < :value
+
+	name.Lt(x) ⟼ Field < :value
 */
 func (eff effect[T, A]) Lt(val A) Constraint[T] {
 	return constraint.Lt[T](eff.Key, val)
 }
 
 /*
-
 Le is less or equal constain
-  name.Le(x) ⟼ Field <= :value
+
+	name.Le(x) ⟼ Field <= :value
 */
 func (eff effect[T, A]) Le(val A) Constraint[T] {
 	return constraint.Le[T](eff.Key, val)
 }
 
 /*
-
 Gt is greater than constrain
-  name.Le(x) ⟼ Field > :value
+
+	name.Le(x) ⟼ Field > :value
 */
 func (eff effect[T, A]) Gt(val A) Constraint[T] {
 	return constraint.Gt[T](eff.Key, val)
 }
 
 /*
-
 Ge is greater or equal constrain
-  name.Le(x) ⟼ Field >= :value
+
+	name.Le(x) ⟼ Field >= :value
 */
 func (eff effect[T, A]) Ge(val A) Constraint[T] {
 	return constraint.Ge[T](eff.Key, val)
 }
 
 /*
-
 Is matches either Eq or NotExists if value is not defined
 */
 func (eff effect[T, A]) Is(val string) Constraint[T] {
@@ -380,17 +365,17 @@ func (eff effect[T, A]) Is(val string) Constraint[T] {
 }
 
 /*
-
 Exists attribute constrain
-  name.Exists(x) ⟼ attribute_exists(name)
+
+	name.Exists(x) ⟼ attribute_exists(name)
 */
 func (eff effect[T, A]) Exists() Constraint[T] {
 	return constraint.Exists[T](eff.Key)
 }
 
 /*
-
 NotExists attribute constrain
+
 	name.NotExists(x) ⟼ attribute_not_exists(name)
 */
 func (eff effect[T, A]) NotExists() Constraint[T] {

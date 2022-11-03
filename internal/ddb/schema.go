@@ -3,7 +3,7 @@
 //
 // This file may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-// https://github.com/fogfish/dynamo
+// https://github.com/holmes89/dynamo
 //
 
 package ddb
@@ -12,12 +12,11 @@ import (
 	"strings"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
-	"github.com/fogfish/dynamo/v2"
 	"github.com/fogfish/golem/pure/hseq"
+	"github.com/holmes89/dynamo"
 )
 
 /*
-
 Schema is utility that decodes type into projection expression
 */
 type Schema[T dynamo.Thing] struct {

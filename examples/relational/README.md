@@ -230,7 +230,7 @@ DynamoDB table schema for fictional arxiv.org is defined at [schema.sh](schema.s
 
 ## Writing and Reading DynamoDB  
 
-Actual reads and writes into DynamoDB tables are very straightforward with the `dynamo` library. It has been well covered by the [api documentation](https://github.com/fogfish/dynamo). Let's only highlight a simple example for each access pattern, which has been defined earlier. 
+Actual reads and writes into DynamoDB tables are very straightforward with the `dynamo` library. It has been well covered by the [api documentation](https://github.com/holmes89/dynamo). Let's only highlight a simple example for each access pattern, which has been defined earlier. 
 
 **As an author I want to publish an article to the system ...**
 
@@ -287,7 +287,7 @@ article, err := db.Get(&articleID)
 
 **As a reader I want to list all articles written by the author ...**
 
-This is one of the primary one-to-many access patterns supported by composite sort keys. The application defines partition key (author) and queries all associated articles. The `dynamo` library implements `Match` function, which uses `curie.IRI` as a pattern of composite sort key. The function returns a lazy sequence of generic representations that has to be transformed into actual data types. `FMap` is a utility that takes a closure function that lifts generic to the struct. The example below uses a monoid pattern to materialize a sequence of generic elements, please see [api documentation](https://github.com/fogfish/dynamo) for details about this pattern.
+This is one of the primary one-to-many access patterns supported by composite sort keys. The application defines partition key (author) and queries all associated articles. The `dynamo` library implements `Match` function, which uses `curie.IRI` as a pattern of composite sort key. The function returns a lazy sequence of generic representations that has to be transformed into actual data types. `FMap` is a utility that takes a closure function that lifts generic to the struct. The example below uses a monoid pattern to materialize a sequence of generic elements, please see [api documentation](https://github.com/holmes89/dynamo) for details about this pattern.
 
 ```go
 var seq Articles

@@ -3,7 +3,7 @@
 //
 // This file may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-// https://github.com/fogfish/dynamo
+// https://github.com/holmes89/dynamo
 //
 
 package s3
@@ -11,12 +11,11 @@ package s3
 import (
 	"reflect"
 
-	"github.com/fogfish/dynamo/v2"
 	"github.com/fogfish/golem/pure/hseq"
+	"github.com/holmes89/dynamo"
 )
 
 /*
-
 Schema is utility that merges two struct
 */
 type Schema[T dynamo.Thing] struct{ hseq.Seq[T] }

@@ -3,7 +3,7 @@
 //
 // This file may be modified and distributed under the terms
 // of the MIT license.  See the LICENSE file for details.
-// https://github.com/fogfish/dynamo
+// https://github.com/holmes89/dynamo
 //
 
 package s3_test
@@ -12,9 +12,9 @@ import (
 	"testing"
 
 	"github.com/fogfish/curie"
-	"github.com/fogfish/dynamo/v2/internal/dynamotest"
-	"github.com/fogfish/dynamo/v2/internal/s3"
 	"github.com/fogfish/it"
+	"github.com/holmes89/dynamo/internal/dynamotest"
+	"github.com/holmes89/dynamo/internal/s3"
 )
 
 func TestMerge(t *testing.T) {
